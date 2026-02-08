@@ -1,0 +1,13 @@
+{
+  "name": "nexus-puzzle-game",
+  "version": "1.0.0",
+  "description": "Interactive Hacker-Themed Puzzle Game",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server",
+    "start": "npx http-server"
+  },
+  "keywords": ["puzzle", "game", "hacker"],
+  "author": "",
+  "license": "ISC"
+}

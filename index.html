@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Access Granted</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            color: #00ff88;
+            overflow: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background Animation */
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #00ff88; }
+            50% { text-shadow: 0 0 20px #ff0055; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 136, 0.03),
+                rgba(0, 255, 136, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: scanlines 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(10, 14, 39, 0.95);
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 20px #00ff88, inset 0 0 20px rgba(0, 255, 136, 0.1);
+            padding: 40px;
+            border-radius: 8px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #00ff88;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            text-shadow: 0 0 10px #00ff88;
+            animation: glitch 3s infinite;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #00ccff;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0e27;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .story-section {
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid #00ff88;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .story-section h2 {
+            color: #00ccff;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .story-section p {
+            color: #00ff88;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .puzzle-container {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid #00ff88;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .puzzle-title {
+            color: #00ccff;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .puzzle-description {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .puzzle-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .puzzle-input::placeholder {
+            color: rgba(0, 255, 136, 0.5);
+        }
+
+        .puzzle-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #00ff88;
+            border-color: #00ccff;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #00ff88;
+            color: #0a0e27;
+            box-shadow: 0 0 15px #00ff88;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-submit {
+            background: rgba(0, 204, 255, 0.1);
+            border-color: #00ccff;
+            color: #00ccff;
+        }
+
+        .btn-submit:hover {
+            background: #00ccff;
+            color: #0a0e27;
+            box-shadow: 0 0 15px #00ccff;
+        }
+
+        .hint {
+            background: rgba(255, 0, 85, 0.1);
+            border-left: 3px solid #ff0055;
+            padding: 10px 15px;
+            margin-top: 15px;
+            color: #ff0055;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hint:hover {
+            background: rgba(255, 0, 85, 0.2);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+            animation: glitch 0.5s;
+        }
+
+        .message.success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+
+        .message.error {
+            background: rgba(255, 0, 85, 0.2);
+            border: 1px solid #ff0055;
+            color: #ff0055;
+        }
+
+        .final-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .final-screen.show {
+            display: block;
+        }
+
+        .final-screen h2 {
+            color: #00ff88;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #00ff88;
+        }
+
+        .final-screen p {
+            color: #00ccff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .link-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .link-box p {
+            color: #00ff88;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .link-box input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .copy-btn {
+            background: #00ff88;
+            color: #0a0e27;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ff88;
+        }
+
+        .password-box {
+            background: rgba(255, 0, 85, 0.1);
+            border: 2px solid #ff0055;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .password-box h3 {
+            color: #ff0055;
+            margin-bottom: 10px;
+        }
+
+        .password-box p {
+            color: #ff0055;
+            font-size: 14px;
+            word-break: break-all;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid #00ccff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #00ccff;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #00ff88;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .puzzle-title {
+                font-size: 16px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <div class="header">
+                <h1>⚡ NEXUS ACCESS ⚡</h1>
+                <p>RESTRICTED SYSTEM - AUTHORIZATION REQUIRED</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div id="gameContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Puzzle Data with Story
+        const puzzles = [
+            {
+                id: 1,
+                story: `[NEXUS SYSTEM ACTIVATED]
+You've intercepted a transmission from an underground research facility. The facility's AI has locked down critical files. You must break through 10 security layers to access them.
+
+LAYER 1: BASIC ENCRYPTION`,
+                title: "Layer 1: Numeric Cipher",
+                description: "Decode this sequence: If 2+2=4, what is 5+3?",
+                answer: "8",
+                hint: "Simple math - just add the numbers",
+                type: "math"
+            },
+            {
+                id: 2,
+                story: `[LAYER 1 BREACHED]
+
+You've cracked the first firewall. The system responds with a logic gate puzzle.
+
+LAYER 2: LOGIC GATE`,
+                title: "Layer 2: Logic Puzzle",
+                description: "A person has 12 coins. Half of them are pennies. How many coins are NOT pennies?",
+                answer: "6",
+                hint: "If half are pennies, the other half must be something else",
+                type: "logic"
+            },
+            {
+                id: 3,
+                story: `[LAYER 2 BREACHED]
+
+The AI's defenses strengthen. A pattern-based security system engages.
+
+LAYER 3: PATTERN RECOGNITION`,
+                title: "Layer 3: Number Pattern",
+                description: "What comes next? 2, 4, 8, 16, __?",
+                answer: "32",
+                hint: "Each number is multiplied by 2",
+                type: "math"
+            },
+            {
+                id: 4,
+                story: `[LAYER 3 BREACHED]
+
+The facility's main database is beginning to unlock. One more security layer stands in your way.
+
+LAYER 4: WORDPLAY ENCRYPTION`,
+                title: "Layer 4: Word Code",
+                description: "What 5-letter word becomes shorter when you add two letters to it?",
+                answer: "short",
+                hint: "Think about what happens when you add 'er' to a word",
+                type: "word"
+            },
+            {
+                id: 5,
+                story: `[LAYER 4 BREACHED]
+
+The system is weakening. You're halfway through the defenses. A complex riddle appears.
+
+LAYER 5: RIDDLE VAULT`,
+                title: "Layer 5: Ancient Riddle",
+                description: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+                answer: "echo",
+                hint: "Think about sound bouncing off surfaces",
+                type: "word"
+            },
+            {
+                id: 6,
+                story: `[LAYER 5 BREACHED]
+
+The core security is now visible. Mathematical encryption stands between you and the truth.
+
+LAYER 6: MATHEMATICAL VAULT`,
+                title: "Layer 6: Math Challenge",
+                description: "If a train travels at 60 mph for 2 hours, how far has it traveled?",
+                answer: "120",
+                hint: "Distance = Speed × Time",
+                type: "math"
+            },
+            {
+                id: 7,
+                story: `[LAYER 6 BREACHED]
+
+The facility's archives begin to surface. A complex logic puzzle blocks your path.
+
+LAYER 7: LOGIC LABYRINTH`,
+                title: "Layer 7: Logic Test",
+                description: "Three friends bought a cake for $30. They each paid $10. Later, the shopkeeper realized he overcharged by $5 and sent his assistant with the money. The assistant kept $2 and gave each friend $1 back. How much did each friend actually pay?",
+                answer: "9",
+                hint: "Each friend paid 10, got 1 back = 9. Don't count the assistant's $2 in the same way",
+                type: "logic"
+            },
+            {
+                id: 8,
+                story: `[LAYER 7 BREACHED]
+
+You're close to the truth. The system shows its final defensive mechanisms. A word puzzle emerges.
+
+LAYER 8: CRYPTIC MESSAGE`,
+                title: "Layer 8: Word Puzzle",
+                description: "What is a word that sounds like one color but is spelled like another?",
+                answer: "read",
+                hint: "Red sounds like this past tense verb",
+                type: "word"
+            },
+            {
+                id: 9,
+                story: `[LAYER 8 BREACHED]
+
+Only one final wall remains. The system generates an intricate mixed challenge.
+
+LAYER 9: FINAL GAUNTLET`,
+                title: "Layer 9: Combined Test",
+                description: "I have cities but no houses, forests but no trees, and water but no fish. What am I?",
+                answer: "map",
+                hint: "Think of something you can hold in your hand",
+                type: "word"
+            },
+            {
+                id: 10,
+                story: `[LAYER 9 BREACHED]
+
+The last layer. The ultimate security. Your mind will determine if you can access the restricted files.
+
+LAYER 10: OMEGA PROTOCOL`,
+                title: "Layer 10: Final Puzzle",
+                description: "What is the next number in this sequence? 1, 4, 9, 16, 25, __?",
+                answer: "36",
+                hint: "These are perfect squares: 1², 2², 3², 4², 5²...",
+                type: "math"
+            }
+        ];
+
+        // Game State
+        let currentPuzzle = 0;
+        let solvedPuzzles = 0;
+        let startTime = Date.now();
+        let hints_used = 0;
+
+        // Configuration
+        const GOOGLE_DRIVE_LINK = "https://drive.google.com/uc?id=YOUR_DRIVE_FILE_ID";
+        const DRIVE_PASSWORD = "NEXUS2026";
+
+        function renderGame() {
+            const gameContent = document.getElementById('gameContent');
+            const puzzle = puzzles[currentPuzzle];
+            const progress = ((currentPuzzle) / puzzles.length) * 100;
+
+            // Update progress bar
+            document.querySelector('.progress-fill').style.width = progress + '%';
+            document.querySelector('.progress-fill').textContent = `${Math.round(progress)}% - LAYER ${currentPuzzle + 1}/${puzzles.length}`;
+
+            gameContent.innerHTML = `
+                <div class="story-section">
+                    <p>${puzzle.story}</p>
+                </div>
+
+                <div class="puzzle-container">
+                    <div class="puzzle-title">🔐 ${puzzle.title}</div>
+                    <div class="puzzle-description">${puzzle.description}</div>
+                    <input 
+                        type="text" 
+                        class="puzzle-input" 
+                        id="answerInput" 
+                        placeholder="Enter your answer..."
+                        onkeypress="handleKeyPress(event)"
+                    />
+                    <div class="buttons">
+                        <button class="btn btn-submit" onclick="checkAnswer()">SUBMIT ANSWER</button>
+                        <button class="btn" onclick="toggleHint()">SHOW HINT</button>
+                    </div>
+                    <div class="hint" id="hintBox" style="display: none;">
+                        💡 <strong>HINT:</strong> ${puzzle.hint}
+                    </div>
+                </div>
+
+                <div class="message" id="message"></div>
+            `;
+
+            // Focus on input
+            setTimeout(() => document.getElementById('answerInput').focus(), 100);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        }
+
+        function checkAnswer() {
+            const puzzle = puzzles[currentPuzzle];
+            const input = document.getElementById('answerInput');
+            const answer = input.value.trim().toLowerCase();
+            const message = document.getElementById('message');
+
+            if (answer === puzzle.answer.toLowerCase()) {
+                solvedPuzzles++;
+                showMessage('✓ ACCESS GRANTED - MOVING TO NEXT LAYER', 'success');
+                
+                setTimeout(() => {
+                    if (currentPuzzle < puzzles.length - 1) {
+                        currentPuzzle++;
+                        renderGame();
+                    } else {
+                        showFinalScreen();
+                    }
+                }, 1500);
+            } else {
+                showMessage('✗ ACCESS DENIED - INCORRECT ANSWER', 'error');
+                input.value = '';
+            }
+        }
+
+        function toggleHint() {
+            const hintBox = document.getElementById('hintBox');
+            if (hintBox.style.display === 'none') {
+                hintBox.style.display = 'block';
+                hints_used++;
+            } else {
+                hintBox.style.display = 'none';
+            }
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 3000);
+        }
+
+        function showFinalScreen() {
+            const gameContent = document.getElementById('gameContent');
+            const endTime = Date.now();
+            const timeTaken = Math.floor((endTime - startTime) / 1000);
+            const minutes = Math.floor(timeTaken / 60);
+            const seconds = timeTaken % 60;
+
+            gameContent.innerHTML = `
+                <div class="final-screen show">
+                    <h2>🎯 ALL LAYERS BREACHED 🎯</h2>
+                    <p>NEXUS DATABASE UNLOCKED</p>
+                    
+                    <div class="link-box">
+                        <p>RESTRICTED FILES - GOOGLE DRIVE ACCESS:</p>
+                        <input 
+                            type="text" 
+                            id="linkInput" 
+                            value="${GOOGLE_DRIVE_LINK}" 
+                            readonly
+                        />
+                        <button class="copy-btn" onclick="copyToClipboard()">COPY LINK</button>
+                    </div>
+
+                    <div class="password-box">
+                        <h3>🔐 DATABASE PASSWORD 🔐</h3>
+                        <p id="passwordDisplay" style="display: none;">${DRIVE_PASSWORD}</p>
+                        <button class="btn btn-submit" onclick="revealPassword()" style="width: 100%;">REVEAL PASSWORD</button>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-card">
+                            <h3>PUZZLES SOLVED</h3>
+                            <p>${solvedPuzzles}/10</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>TIME TAKEN</h3>
+                            <p>${minutes}m ${seconds}s</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>HINTS USED</h3>
+                            <p>${hints_used}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function copyToClipboard() {
+            const linkInput = document.getElementById('linkInput');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('✓ LINK COPIED TO CLIPBOARD');
+        }
+
+        function revealPassword() {
+            const passwordDisplay = document.getElementById('passwordDisplay');
+            const btn = event.target;
+            if (passwordDisplay.style.display === 'none') {
+                passwordDisplay.style.display = 'block';
+                btn.textContent = 'PASSWORD REVEALED ✓';
+                btn.style.background = '#00ff88';
+                btn.style.color = '#0a0e27';
+            }
+        }
+
+        // Initialize Game
+        renderGame();
+    </script>
+</body>
+</html>
