@@ -420,133 +420,97 @@
     </div>
 
     <script>
-        // Puzzle Data with Story
+        // Puzzle Data with Story (replaced with 10 riddles)
         const puzzles = [
             {
                 id: 1,
-                story: `[ধাদা শুরু  ]
- ওয়েলকাম ডিয়ার , এটা একটা ধাদা বক্স। পরবর্তী ধাদার প্রশ্ন খুঁজো এবং খুঁজে বের কর সিন্দুকের চাবি ।দীর্ঘ পথ অতিক্রমের পরে  তুমি তোমার  কাঙ্খিত ছবি পাবে
-                LAYER 1: সাধারণ জিজ্ঞেসা `,
-                title: "Layer 1: BIO Cipher",
-                description: "তোমার বাবার নাম কি?",
-                answer: "জ্যোতিষ",
-                hint: "নামের প্রথম পার্ট, বাংলাতে",
-                type: "পরিচয়"
+                story: `[ধাদা 1] what is your father name ?`,
+                title: "Layer 1: ধাঁধা",
+                description: "tomar sperm er owner",
+                answer: "Jotish",
+                hint: "parental",
+                type: "ধাঁধা"
             },
             {
                 id: 2,
-                story: `[LAYER 1 BREACHED]
-
-LAYER 2: LOGIC GATE`,
-                title: "Layer 2: Logic Puzzle",
-                description: "তোমার কাছে একটা লেংচা মিষ্টি আছে । এবার তুমি এক কোপে মিষ্টি টা কে ৩ ভাগ করে ফেলবে তোমার বাসায় খাবার এর  যে সব সাধারণ জিনিস থাকে ওই গুলো এ আছে। কোন জিনিস দিয়ে এই কাজ করতে পারবে?",
-                answer: "গ্লাস",
-                hint: "এটা একটা অস্ত্র, যেমন ছুড়ি, দা, কচি ,,,",
-                type: "চিন্তা কর"
+                story: `[ধাদা 2] একটি গাছের বাঁট নাই, তবু দুগ্ধ হয় প্রচুর।`,
+                title: "Layer 2: ধাঁধা",
+                description: "একটি গাছের বাঁট নাই, তবু দুগ্ধ হয় প্রচুর।",
+                answer: "তালগাছ",
+                hint: "ফল থেকে পানীয় পাওয়া যায়",
+                type: "ধাঁধা"
             },
             {
                 id: 3,
-                story: `[LAYER 2 BREACHED]
-
-The AI's defenses strengthen. A pattern-based security system engages.
-
-LAYER 3: PATTERN RECOGNITION`,
-                title: "Layer 3: Number Pattern",
-                description: "What comes next? 0,1,1, 2,3 , _",
-                answer: "5",
-                hint: "Fibonacci serias",
-                type: "math"
+                story: `[ধাদা 3] এতো ভালো বিছানা, কেউ যেন বসে না।`,
+                title: "Layer 3: ধাঁধা",
+                description: "এতো ভালো বিছানা, কেউ যেন বসে না।",
+                answer: "পানি",
+                hint: "তরল পদার্থ",
+                type: "ধাঁধা"
             },
             {
                 id: 4,
-                story: `[LAYER 3 BREACHED]
-
-The facility's main database is beginning to unlock. One more security layer stands in your way.
-
-LAYER 4: শব্দের ঝলকানি`,
-                title: "Layer 4: Word Code",
-                description: "একলা তারে যায় না দেখা, সঙ্গী গেলে বাঁচে। আধার দেখে ভয়ে পালায়, আলোয় ফিরে আসে।",
-                answer: "ছায়া",
-                hint: "Think about what happens ইন নাইট",
-                type: "word"
+                story: `[ধাদা 4] তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ভেসে; শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।`,
+                title: "Layer 4: ধাঁধা",
+                description: "তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ভেসে; শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।",
+                answer: "বরফ",
+                hint: "ঠান্ডা হলে তৈরি হয়",
+                type: "ধাঁধা"
             },
             {
                 id: 5,
-                story: `[LAYER 4 BREACHED]
-
-The system is weakening. You're halfway through the defenses. A complex riddle appears.
-
-LAYER 5: RIDDLE VAULT`,
-                title: "Layer 5: Ancient Riddle",
-                description: "একটা 20 মিটার উঁচু দেওয়ালকে একটা ব্যাঙ টপকে যাবে | ব্যাঙ টি এক লাফে 4 মিটার উঠে আবার পিচ্ছিল খেয়ে 2 মিটার নিচে নেমে যায় | মনে পরিশেষে সে 2 মিটার ই থাকে| এই দেওয়াল টপকাতে কতগুলো লাফ দেওয়া লাগবে?",
-                answer: "9",
-                hint: "শেষে যদি দেওয়ালের টপ এ পৌঁছে যায় তখন তো আর পিচ্ছিল খাবে না",
-                type: "কত নাম্বার"
+                story: `[ধাদা 5] যার দাঁত আছে কিন্তু কামড় দিতে পারে না?`,
+                title: "Layer 5: ধাঁধা",
+                description: "যার দাঁত আছে কিন্তু কামড় দিতে পারে না?",
+                answer: "চিরুনি",
+                hint: "চুল গোঁজা জিনিস",
+                type: "ধাঁধা"
             },
             {
                 id: 6,
-                story: `[LAYER 5 BREACHED]
-
-The core security is now visible. Mathematical encryption stands between you and the truth.
-
-LAYER 6: MATHEMATICAL VAULT`,
-                title: "Layer 6: Math Challenge",
-                description: "একটা দীপে 5 হাজার লোক বাস করে তার মধ্যে আড়াই হাজার লোক হলো খোড়া (লেংড়া) | ওই দীপের মানুষের জন্যে যদি কোনও বেপারি জুতা নিয়ে যায় | তবে মোট কতগুলো জুতা হলে ওই দীপের সবার হয়ে যাবে?",
-                answer: "10000",
-                hint: "খরা হলে ও তো পেয়ে জুতা লাগবে ",
-                type: "math"
+                story: `[ধাদা 6] জীবিত থাকলে কবর দেয়, মরে গেলে খুঁড়ে নেয়—এ কে?`,
+                title: "Layer 6: ধাঁধা",
+                description: "জীবিত থাকলে কবর দেয়, মরে গেলে খুঁড়ে নেয়—এ কে?",
+                answer: "চারা",
+                hint: "গাছের ছোট অংশ",
+                type: "ধাঁধা"
             },
             {
                 id: 7,
-                story: `[LAYER 6 BREACHED]
-
-The facility's archives begin to surface. A complex logic puzzle blocks your path.
-
-LAYER 7: LOGIC LABYRINTH`,
-                title: "Layer 7: Logic Test",
-                description: "পানির মধ্যে বাস, পানিতে ই সর্বনাশ ",
-                answer: "লবণ",
-                hint: "একটা খবরের জিনিস",
-                type: "logic"
+                story: `[ধাদা 7] কোন জিনিসটা ব্যবহারের আগে ভাঙতে হয়?`,
+                title: "Layer 7: ধাঁধা",
+                description: "কোন জিনিসটা ব্যবহারের আগে ভাঙতে হয়?",
+                answer: "ডিম",
+                hint: "খাবারের উপাদান",
+                type: "ধাঁধা"
             },
             {
                 id: 8,
-                story: `[LAYER 7 BREACHED]
-
-You're close to the truth. The system shows its final defensive mechanisms. A word puzzle emerges.
-
-LAYER 8: CRYPTIC MESSAGE`,
-                title: "Layer 8: Word Puzzle",
-                description: "একই প্রশ্ন সবাই আলাদা উত্তর দেয়—সব উত্তরই ঠিক! প্রশ্নটি কী?",
-                answer: "তোমার নাম কি?",
-                hint: "সাধারণ প্রশ্ন, নিজের সমন্ধে",
-                type: "একটা বাক্য "
+                story: `[ধাদা 8] কোন জিনিস দেখা যায়, অনুভব করা যায় কিন্তু ছোঁয়া যায় না?`,
+                title: "Layer 8: ধাঁধা",
+                description: "কোন জিনিস দেখা যায়, অনুভব করা যায় কিন্তু ছোঁয়া যায় না?",
+                answer: "ধোঁয়া",
+                hint: "জ্বললে উঠতে দেখা যায়",
+                type: "ধাঁধা"
             },
             {
                 id: 9,
-                story: `[LAYER 8 BREACHED]
-
-Only one final wall remains. The system generates an intricate mixed challenge.
-
-LAYER 9: FINAL GAUNTLET`,
-                title: "Layer 9: Combined Test",
-                description: "কোন জালের সুতা নাই",
-                answer: "ইন্টারনেট",
-                hint: "এটা আসলে জাল না, তবে নামের সাথে নেট আছে",
-                type: "word"
+                story: `[ধাদা 9] যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর?`,
+                title: "Layer 9: ধাঁধা",
+                description: "যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর?",
+                answer: "ঘড়ি",
+                hint: "সময় দেখায়",
+                type: "ধাঁধা"
             },
             {
                 id: 10,
-                story: `[LAYER 9 BREACHED]
-
-The last layer. The ultimate security. Your mind will determine if you can access the restricted files.
-
-LAYER 10: OMEGA PROTOCOL`,
-                title: "Layer 10: Final Puzzle",
-                description: "হোয়াট ইস দ্য নেম অফ জ্যোতিষ'এস গার্লফ্রেন্ড",
-                answer: "",
-                hint: "তার তো জিএফ নাই",
-                type: "থিঙ্ক"
+                story: `[ধাদা 10] সবসময় সামনে চলে, কখনো পিছনে যায় না—কি?`,
+                title: "Layer 10: ধাঁধা",
+                description: "সবসময় সামনে চলে, কখনো পিছনে যায় না—কি?",
+                answer: "সময়",
+                hint: "অতীত-বর্তমান-ভবিষ্যৎ",
+                type: "ধাঁধা"
             }
         ];
 
@@ -557,8 +521,8 @@ LAYER 10: OMEGA PROTOCOL`,
         let hints_used = 0;
 
         // Configuration
-        const GOOGLE_DRIVE_LINK = "https://drive.google.com/file/d/1Ls7DuN4Ncb5dU5CojYylTf_Q2pnPLVaW/view?usp=sharing";
-        const DRIVE_PASSWORD = "NEXUS2026";
+        const GOOGLE_DRIVE_LINK = "https://drive.google.com/drive/folders/1Z__NFZRCdj-qsixVVdVwwqX2CybwuY_e?usp=drive_link";
+        const DRIVE_PASSWORD = "komuna";
 
         function renderGame() {
             const gameContent = document.getElementById('gameContent');
