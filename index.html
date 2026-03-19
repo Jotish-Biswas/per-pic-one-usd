@@ -333,6 +333,36 @@
             box-shadow: 0 0 15px #00ff88;
         }
 
+        .view-link-btn {
+            width: 100%;
+            padding: 18px 24px;
+            margin-bottom: 20px;
+            border: 2px solid #00ff88;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 255, 0.18));
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.35), inset 0 0 25px rgba(0, 255, 136, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, color 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .view-link-btn:hover {
+            transform: translateY(-2px) scale(1.01);
+            color: #0a0e27;
+            background: #00ff88;
+            box-shadow: 0 0 28px rgba(0, 255, 136, 0.85);
+        }
+
+        .view-link-btn:active {
+            transform: scale(0.98);
+        }
+
         .password-box {
             background: rgba(255, 0, 85, 0.1);
             border: 2px solid #ff0055;
@@ -400,6 +430,11 @@
             .stats {
                 grid-template-columns: 1fr;
             }
+
+            .view-link-btn {
+                font-size: 16px;
+                padding: 14px 16px;
+            }
         }
     </style>
 </head>
@@ -424,36 +459,36 @@
         const puzzles = [
             {
                 id: 1,
-                story: `[ধাদা 1] what is your father name ?`,
+                story: `[ধাদা 1] Someone's name `,
                 title: "Layer 1: ধাঁধা",
-                description: "tomar sperm er owner",
+                description: "তোমাদের মধ্যে সহজ সরল লোক কে ",
                 answer: "Jotish",
-                hint: "parental",
+                hint: "তোমাদের গ্রুপ এর ই একজন, ইংলিশ এ নাম দেও ",
                 type: "ধাঁধা"
             },
             {
                 id: 2,
-                story: `[ধাদা 2] একটি গাছের বাঁট নাই, তবু দুগ্ধ হয় প্রচুর।`,
+                story: `একজিনিস যা সারাদিনে পৃথিবী ঘুরে আসতে পারে `,
                 title: "Layer 2: ধাঁধা",
-                description: "একটি গাছের বাঁট নাই, তবু দুগ্ধ হয় প্রচুর।",
-                answer: "তালগাছ",
-                hint: "ফল থেকে পানীয় পাওয়া যায়",
+                description: "সকালে জন্ম নেয় বিকালে মারা   যায় | পরের দিন সকালে আবার জন্ম নেয় বিকালে আবার মারা যায় , যার জীবন এর শেষ নেই , যাকে চার জীবন অচল ",
+                answer: "সূর্য",
+                hint: "রাতের সময় যা দেখা যায় না ",
                 type: "ধাঁধা"
             },
             {
                 id: 3,
-                story: `[ধাদা 3] এতো ভালো বিছানা, কেউ যেন বসে না।`,
+                story: ``,
                 title: "Layer 3: ধাঁধা",
-                description: "এতো ভালো বিছানা, কেউ যেন বসে না।",
-                answer: "পানি",
-                hint: "তরল পদার্থ",
+                description: "পৃথিবীর মতো গোল, কিন্তু পৃথিবী নয়; পাতার মতো সবুজ, কিন্তু পাতা নয়; রক্তের মতো লাল, কিন্তু রক্ত নয়?",
+                answer: "তরমুজ",
+                hint: "🍉 খাবার জিনিস",
                 type: "ধাঁধা"
             },
             {
                 id: 4,
-                story: `[ধাদা 4] তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ভেসে; শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।`,
+                story: `[ধাদা 4] তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ধ্বংস হয় | শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।`,
                 title: "Layer 4: ধাঁধা",
-                description: "তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ভেসে; শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।",
+                description: "তিন অক্ষরে নাম যার, যাতে তৈরি তাতেই ধ্বংস; শেষের অক্ষর বাদ দিলে সোজা বিয়ের পিঁড়িতে বসে।",
                 answer: "বরফ",
                 hint: "ঠান্ডা হলে তৈরি হয়",
                 type: "ধাঁধা"
@@ -469,47 +504,47 @@
             },
             {
                 id: 6,
-                story: `[ধাদা 6] জীবিত থাকলে কবর দেয়, মরে গেলে খুঁড়ে নেয়—এ কে?`,
+                story: ``,
                 title: "Layer 6: ধাঁধা",
-                description: "জীবিত থাকলে কবর দেয়, মরে গেলে খুঁড়ে নেয়—এ কে?",
-                answer: "চারা",
-                hint: "গাছের ছোট অংশ",
+                description: "কোন জিনিস গাছে সবুজ, দোকানে কাল, বাড়িতে আনলে লাল?",
+                answer: "চা",
+                hint: "পান করার জিনিস",
                 type: "ধাঁধা"
             },
             {
                 id: 7,
-                story: `[ধাদা 7] কোন জিনিসটা ব্যবহারের আগে ভাঙতে হয়?`,
+                story: ``,
                 title: "Layer 7: ধাঁধা",
-                description: "কোন জিনিসটা ব্যবহারের আগে ভাঙতে হয়?",
-                answer: "ডিম",
-                hint: "খাবারের উপাদান",
+                description: "আমার মধ্যে আছো তুমি, তোমার মধ্যে নাই; আমাদের মধ্যে আছো তুমি, বাবার মধ্যে নাই",
+                answer: "আ",
+                hint: "বাংলা  অক্ষর",
                 type: "ধাঁধা"
             },
             {
                 id: 8,
-                story: `[ধাদা 8] কোন জিনিস দেখা যায়, অনুভব করা যায় কিন্তু ছোঁয়া যায় না?`,
+                story: `একটা দীপে 5 হাজার লোক বাস করে যার মধ্যে 3 হাজার লোকের এক পা নেই খরা 1 হাজার এর হাত নেই |`,
                 title: "Layer 8: ধাঁধা",
-                description: "কোন জিনিস দেখা যায়, অনুভব করা যায় কিন্তু ছোঁয়া যায় না?",
-                answer: "ধোঁয়া",
-                hint: "জ্বললে উঠতে দেখা যায়",
-                type: "ধাঁধা"
+                description: "ওই দীপে মোট কত জোরা  জুতা প্রয়োজন হবে?",
+                answer: "5000",
+                hint: "উত্তর হবে ইংরেজি নাম্বার এ যেমন 1000 . চিন্তা কর খরা মানুষ কয়টা জুতা কেনে ",
+                type: "অঙ্ক"
             },
             {
                 id: 9,
-                story: `[ধাদা 9] যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর?`,
+                story: `[ধাদা 9] যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর? তবে সে চলতে থাকে সবসময় `,
                 title: "Layer 9: ধাঁধা",
-                description: "যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর?",
-                answer: "ঘড়ি",
+                description: "যার আছে তিনটি হাত কিন্তু নেই পা বা শরীর? তবে চলতে পারে ",
+                answer: "ঘড়ি",
                 hint: "সময় দেখায়",
                 type: "ধাঁধা"
             },
             {
                 id: 10,
-                story: `[ধাদা 10] সবসময় সামনে চলে, কখনো পিছনে যায় না—কি?`,
+                story: `[ধাদা 10] ব্রেন খাটাও `,
                 title: "Layer 10: ধাঁধা",
-                description: "সবসময় সামনে চলে, কখনো পিছনে যায় না—কি?",
-                answer: "সময়",
-                hint: "অতীত-বর্তমান-ভবিষ্যৎ",
+                description: "জ্যোতিষ এর গার্লফ্রেন্ড কে ?",
+                answer: "",
+                hint: "আদৌ কি জ্যোতিষ এর গার্লফ্রেন্ড আছে ",
                 type: "ধাঁধা"
             }
         ];
@@ -624,17 +659,8 @@
                 <div class="final-screen show">
                     <h2>🎯 ALL LAYERS BREACHED 🎯</h2>
                     <p>NEXUS DATABASE UNLOCKED</p>
-                    
-                    <div class="link-box">
-                        <p>RESTRICTED FILES - GOOGLE DRIVE ACCESS:</p>
-                        <input 
-                            type="text" 
-                            id="linkInput" 
-                            value="${GOOGLE_DRIVE_LINK}" 
-                            readonly
-                        />
-                        <button class="copy-btn" onclick="copyToClipboard()">COPY LINK</button>
-                    </div>
+
+                    <button class="view-link-btn" onclick="openDriveLink()">ছবি দেখার জন্যে ক্লিক কর</button>
 
                     <div class="password-box">
                         <h3>🔐 DATABASE PASSWORD 🔐</h3>
@@ -665,6 +691,10 @@
             linkInput.select();
             document.execCommand('copy');
             alert('✓ LINK COPIED TO CLIPBOARD');
+        }
+
+        function openDriveLink() {
+            window.location.href = GOOGLE_DRIVE_LINK;
         }
 
         function revealPassword() {
